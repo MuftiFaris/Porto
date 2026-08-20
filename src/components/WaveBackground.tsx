@@ -26,8 +26,9 @@ export default function WaveBackground() {
     let time = 0;
 
     const resizeCanvas = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      const rect = canvas.getBoundingClientRect();
+      canvas.width = rect.width;
+      canvas.height = rect.height;
     };
     resizeCanvas();
 
@@ -92,30 +93,6 @@ export default function WaveBackground() {
       const centerY = height / 2;
 
       ctx.clearRect(0, 0, width, height);
-
-      // Gradient layers
-      const colors = [
-        "rgba(171,176,201,0.25)", // primary
-        "rgba(96,63,69,0.25)", // secondary
-        "rgba(161,131,109,0.25)", // accent
-        "rgba(171,176,201,0.25)", // primary
-        "rgba(96,63,69,0.25)", // secondary
-      ];
-      const layerHeight = height / colors.length;
-
-      colors.forEach((color, i) => {
-        const yOffset = Math.sin(time * 0.3 + i * 1.2) * layerHeight * 0.2;
-        const gradient = ctx.createLinearGradient(
-          0,
-          i * layerHeight + yOffset,
-          0,
-          (i + 1) * layerHeight + yOffset,
-        );
-        gradient.addColorStop(0, color);
-        gradient.addColorStop(1, "rgba(0,0,0,0)");
-        ctx.fillStyle = gradient;
-        ctx.fillRect(0, i * layerHeight + yOffset, width, layerHeight);
-      });
 
       // Build vertex grid
       const cols = Math.ceil(width / GRID_SIZE) + 1;

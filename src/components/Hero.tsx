@@ -1,6 +1,9 @@
 import { motion, type Variants } from "framer-motion";
 import WaveBackground from "./WaveBackground";
-import { colors } from "../lib/colors";
+import RotatingText from "./RotatingText";
+import { colors, withAlpha } from "../lib/colors";
+
+const heroWords = ["Mufti Faris", "Frontend", "Backend"];
 
 const container: Variants = {
   hidden: {},
@@ -23,6 +26,15 @@ export default function Hero() {
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
       <WaveBackground />
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: `linear-gradient(135deg, ${withAlpha("primary", 0.22)}, ${withAlpha(
+            "secondary",
+            0.22,
+          )}, ${withAlpha("accent", 0.22)})`,
+        }}
+      />
 
       <motion.div
         variants={container}
@@ -41,7 +53,7 @@ export default function Hero() {
           variants={item}
           className="text-5xl md:text-7xl font-bold tracking-tight mb-6 text-[hsl(240,20%,95%)]"
         >
-          Your Name
+          <RotatingText words={heroWords} />
         </motion.h1>
         <motion.p
           variants={item}

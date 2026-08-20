@@ -1,6 +1,7 @@
 import { FiGithub, FiLinkedin, FiTwitter, FiMail } from "react-icons/fi";
 import Reveal from "./Reveal";
-import { colors } from "../lib/colors";
+import WaveBackground from "./WaveBackground";
+import { colors, withAlpha } from "../lib/colors";
 
 const socials = [
   { icon: FiGithub, label: "GitHub", href: "https://github.com/yourusername" },
@@ -11,8 +12,22 @@ const socials = [
 
 export default function Contact() {
   return (
-    <section id="contact" className="relative border-t border-white/5 scroll-mt-16">
-      <div className="max-w-6xl mx-auto px-6 py-24 text-center">
+    <section
+      id="contact"
+      className="relative border-t border-white/5 scroll-mt-16 overflow-hidden min-h-screen flex items-center"
+    >
+      <WaveBackground />
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: `linear-gradient(135deg, ${withAlpha("primary", 0.22)}, ${withAlpha(
+            "secondary",
+            0.22,
+          )}, ${withAlpha("accent", 0.22)})`,
+        }}
+      />
+
+      <div className="relative z-10 max-w-6xl mx-auto px-6 py-24 text-center w-full">
         <Reveal>
           <span
             className="text-xs font-medium tracking-widest uppercase"

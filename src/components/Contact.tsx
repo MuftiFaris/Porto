@@ -1,13 +1,11 @@
-import { FiGithub, FiLinkedin, FiTwitter, FiMail } from "react-icons/fi";
+import { FiGithub, FiLinkedin } from "react-icons/fi";
 import Reveal from "./Reveal";
 import WaveBackground from "./WaveBackground";
 import { colors, withAlpha } from "../lib/colors";
 
 const socials = [
-  { icon: FiGithub, label: "GitHub", href: "https://github.com/yourusername" },
-  { icon: FiLinkedin, label: "LinkedIn", href: "https://linkedin.com/in/yourusername" },
-  { icon: FiTwitter, label: "Twitter", href: "https://twitter.com/yourusername" },
-  { icon: FiMail, label: "Email", href: "mailto:you@example.com" },
+  { icon: FiGithub, label: "GitHub", href: "https://github.com/MuftiFaris" },
+  { icon: FiLinkedin, label: "LinkedIn", href: "https://www.linkedin.com/in/mufti-faris/" }
 ];
 
 export default function Contact() {
@@ -44,7 +42,9 @@ export default function Contact() {
           </p>
 
           <a
-            href="mailto:you@example.com"
+            href="https://www.linkedin.com/in/mufti-faris/"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex px-8 py-4 rounded-lg font-medium bg-[hsl(232,22%,60%)] text-[hsl(240,23%,5%)] hover:bg-[hsl(25,22%,60%)] transition-all duration-300 mb-12"
           >
             Say Hello

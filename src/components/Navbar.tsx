@@ -23,7 +23,7 @@ export default function Navbar() {
     >
       <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
         <a href="#" className="text-sm font-semibold tracking-tight text-[hsl(240,20%,95%)]">
-          Your Name
+          Mufti Faris
         </a>
 
         <div className="flex items-center gap-6">

@@ -18,10 +18,11 @@ export default function About() {
             A bit about me
           </h2>
           <p className="leading-relaxed max-w-2xl text-base md:text-lg text-[hsl(240,20%,70%)] mb-14">
-            Write two or three sentences about your background here. What you
-            studied or how you got into programming, what kind of problems
-            you like solving, and what you're currently focused on learning
-            or building.
+            I am a undergraduate informatics student at Universitas Sebelas Maret with a passion for building innovative and
+            user-friendly applications. I enjoy solving complex problems and am
+            constantly learning new technologies to improve my skills. Currently,
+            I am focused on developing web applications using modern technologies
+            like React and Node.js.
           </p>
         </Reveal>
 

@@ -25,10 +25,6 @@ export default function WaveBackground() {
     let animationFrameId: number;
     let time = 0;
 
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-
     const resizeCanvas = () => {
       const rect = canvas.getBoundingClientRect();
       canvas.width = rect.width;
@@ -172,9 +168,7 @@ export default function WaveBackground() {
         }
       }
 
-      if (!prefersReducedMotion) {
-        animationFrameId = requestAnimationFrame(animate);
-      }
+      animationFrameId = requestAnimationFrame(animate);
     };
     animate();
 

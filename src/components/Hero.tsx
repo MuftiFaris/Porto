@@ -1,4 +1,4 @@
-import { motion, type Variants } from "framer-motion";
+import { motion, useReducedMotion, type Variants } from "framer-motion";
 import WaveBackground from "./WaveBackground";
 import RotatingText from "./RotatingText";
 import { heroWash, primaryInk } from "../lib/colors";
@@ -10,16 +10,26 @@ const container: Variants = {
   show: { transition: { staggerChildren: 0.1 } },
 };
 
-const item: Variants = {
-  hidden: { opacity: 0, y: 12 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] },
-  },
-};
+function useItemVariants(reduceMotion: boolean): Variants {
+  return reduceMotion
+    ? {
+        hidden: { opacity: 0 },
+        show: { opacity: 1, transition: { duration: 0.15 } },
+      }
+    : {
+        hidden: { opacity: 0, y: 12 },
+        show: {
+          opacity: 1,
+          y: 0,
+          transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] },
+        },
+      };
+}
 
 export default function Hero() {
+  const reduceMotion = useReducedMotion();
+  const item = useItemVariants(!!reduceMotion);
+
   return (
     <section
       id="hero"
@@ -60,7 +70,7 @@ export default function Hero() {
         <motion.div variants={item} className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4">
           <a
             href="#projects"
-            className="inline-flex px-7 py-3.5 text-sm font-medium transition-transform duration-200 hover:-translate-y-0.5"
+            className="inline-flex px-7 py-3.5 text-sm font-medium transition-transform duration-200 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98]"
             style={{
               borderRadius: "var(--radius-control)",
               background: "var(--color-primary)",

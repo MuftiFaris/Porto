@@ -12,7 +12,7 @@ export default function Projects() {
       <div className="max-w-4xl mx-auto px-6 md:px-10 py-24 md:py-28">
         <Reveal>
           <span
-            className="font-mono text-xs uppercase tracking-[0.14em]"
+            className="text-xs font-semibold uppercase tracking-[0.14em]"
             style={{ color: "var(--color-primary)" }}
           >
             Selected work
@@ -23,10 +23,7 @@ export default function Projects() {
           >
             Things I&rsquo;ve shipped
           </h2>
-          <p
-            className="font-mono text-sm mb-12"
-            style={{ color: "var(--color-muted)" }}
-          >
+          <p className="text-sm mb-12" style={{ color: "var(--color-muted)" }}>
             {projects.length} projects · 2024–2026
           </p>
         </Reveal>

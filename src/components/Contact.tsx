@@ -21,7 +21,7 @@ export default function Contact() {
       <div className="relative z-10 max-w-3xl mx-auto px-6 md:px-10 py-24 w-full">
         <Reveal>
           <span
-            className="font-mono text-xs uppercase tracking-[0.14em]"
+            className="text-xs font-semibold uppercase tracking-[0.14em]"
             style={{ color: "var(--color-primary)" }}
           >
             Contact
@@ -41,7 +41,7 @@ export default function Contact() {
             href="https://www.linkedin.com/in/mufti-faris/"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex px-7 py-3.5 text-sm font-medium transition-transform duration-200 hover:-translate-y-0.5 mb-12"
+            className="inline-flex px-7 py-3.5 text-sm font-medium transition-transform duration-200 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] mb-12"
             style={{
               borderRadius: "var(--radius-control)",
               background: "var(--color-primary)",

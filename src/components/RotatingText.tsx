@@ -31,15 +31,24 @@ export default function RotatingText({
   className = "",
 }: RotatingTextProps) {
   const [index, setIndex] = useState(0);
+  const [paused, setPaused] = useState(false);
   const reduceMotion = useReducedMotion();
 
   useEffect(() => {
-    if (words.length <= 1) return;
+    if (words.length <= 1 || paused) return;
     const id = setInterval(() => {
       setIndex((i) => (i + 1) % words.length);
     }, interval);
     return () => clearInterval(id);
-  }, [words.length, interval]);
+  }, [words.length, interval, paused]);
+
+  // WCAG 2.2.2 — auto-updating content pauses on hover/focus.
+  const pauseHandlers = {
+    onMouseEnter: () => setPaused(true),
+    onMouseLeave: () => setPaused(false),
+    onFocus: () => setPaused(true),
+    onBlur: () => setPaused(false),
+  };
 
   const current = words[index];
 
@@ -47,7 +56,7 @@ export default function RotatingText({
   // motion — respect prefers-reduced-motion with a plain crossfade instead.
   if (reduceMotion) {
     return (
-      <span className={`inline-block ${className}`}>
+      <span className={`inline-block ${className}`} tabIndex={0} {...pauseHandlers}>
         <AnimatePresence mode="wait">
           <motion.span
             key={current}
@@ -67,7 +76,7 @@ export default function RotatingText({
   const letters = current.split("");
 
   return (
-    <span className={`inline-block ${className}`}>
+    <span className={`inline-block ${className}`} tabIndex={0} {...pauseHandlers}>
       <AnimatePresence mode="wait">
         <motion.span key={current} className="inline-block" initial="hidden" exit="exit">
           {letters.map((char, i) => (

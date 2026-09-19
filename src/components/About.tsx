@@ -8,7 +8,7 @@ export default function About() {
       <div className="max-w-4xl mx-auto px-6 md:px-10 py-24 md:py-28">
         <Reveal>
           <span
-            className="font-mono text-xs uppercase tracking-[0.14em]"
+            className="text-xs font-semibold uppercase tracking-[0.14em]"
             style={{ color: "var(--color-primary)" }}
           >
             About
@@ -20,7 +20,7 @@ export default function About() {
             A bit about me
           </h2>
           <p
-            className="leading-relaxed max-w-2xl text-base md:text-lg mb-16"
+            className="leading-relaxed max-w-xl text-base md:text-lg mb-16"
             style={{ color: "var(--color-ink-2)" }}
           >
             I am an undergraduate informatics student at Universitas Sebelas
@@ -34,7 +34,7 @@ export default function About() {
         <div id="skills" className="scroll-mt-20">
           <Reveal delay={80}>
             <h3
-              className="font-mono text-xs uppercase tracking-[0.14em] mb-6"
+              className="text-xs font-semibold uppercase tracking-[0.14em] mb-6"
               style={{ color: "var(--color-muted)" }}
             >
               Skills &amp; Stack
@@ -53,7 +53,7 @@ export default function About() {
                     style={{ borderBottom: "1px solid var(--color-rule-2)" }}
                   >
                     <h4
-                      className="font-mono text-xs uppercase tracking-widest pt-1"
+                      className="text-xs font-semibold uppercase tracking-widest pt-1"
                       style={{ color: "var(--color-ink)" }}
                     >
                       {group.category}

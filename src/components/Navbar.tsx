@@ -1,14 +1,16 @@
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { FiArrowUpRight } from "react-icons/fi";
 
 // N9 · Edge-aligned minimal — wordmark hard-left, one CTA hard-right,
 // vast empty space between, no link row. The absence is the design.
 export default function Navbar() {
+  const reduceMotion = useReducedMotion();
+
   return (
     <motion.nav
-      initial={{ y: -16, opacity: 0 }}
+      initial={reduceMotion ? { opacity: 1 } : { y: -16, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+      transition={{ duration: reduceMotion ? 0.15 : 0.5, ease: [0.16, 1, 0.3, 1] }}
       className="fixed top-0 left-0 right-0 z-30 backdrop-blur-xl"
       style={{
         background: "oklch(14% 0.014 278 / 0.55)",

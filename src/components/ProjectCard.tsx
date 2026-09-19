@@ -72,8 +72,8 @@ export default function ProjectCard({
           </div>
         ) : (
           <div
-            className="aspect-video w-full flex items-center justify-center font-mono text-xs uppercase tracking-widest"
-            style={{ background: "var(--color-paper-3)", color: "var(--color-muted)" }}
+            className="aspect-video w-full flex items-center justify-center text-xs uppercase tracking-widest"
+            style={{ background: "var(--color-paper-3)", color: "var(--color-ink-2)" }}
           >
             Preview unavailable
           </div>

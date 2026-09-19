@@ -1,56 +1,57 @@
 import { FiGithub, FiLinkedin } from "react-icons/fi";
 import Reveal from "./Reveal";
 import WaveBackground from "./WaveBackground";
-import { colors, withAlpha } from "../lib/colors";
+import { heroWash, primaryInk } from "../lib/colors";
 
 const socials = [
   { icon: FiGithub, label: "GitHub", href: "https://github.com/MuftiFaris" },
-  { icon: FiLinkedin, label: "LinkedIn", href: "https://www.linkedin.com/in/mufti-faris/" }
+  { icon: FiLinkedin, label: "LinkedIn", href: "https://www.linkedin.com/in/mufti-faris/" },
 ];
 
 export default function Contact() {
   return (
     <section
       id="contact"
-      className="relative border-t border-white/5 scroll-mt-16 overflow-hidden min-h-screen flex items-center"
+      className="relative scroll-mt-20 overflow-hidden flex items-center"
+      style={{ minHeight: "70dvh", borderTop: "1px solid var(--color-rule-2)" }}
     >
       <WaveBackground />
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background: `linear-gradient(135deg, ${withAlpha("primary", 0.22)}, ${withAlpha(
-            "secondary",
-            0.22,
-          )}, ${withAlpha("accent", 0.22)})`,
-        }}
-      />
+      <div className="absolute inset-0 pointer-events-none" style={{ background: heroWash }} />
 
-      <div className="relative z-10 max-w-6xl mx-auto px-6 py-24 text-center w-full">
+      <div className="relative z-10 max-w-3xl mx-auto px-6 md:px-10 py-24 w-full">
         <Reveal>
           <span
-            className="text-xs font-medium tracking-widest uppercase"
-            style={{ color: colors.accent }}
+            className="font-mono text-xs uppercase tracking-[0.14em]"
+            style={{ color: "var(--color-primary)" }}
           >
             Contact
           </span>
-          <h2 className="text-2xl md:text-4xl font-bold mt-2 mb-4 tracking-tight text-[hsl(240,20%,95%)]">
-            Let's work together
+          <h2
+            className="font-display font-semibold mt-3 mb-4"
+            style={{ fontSize: "var(--text-h2)", color: "var(--color-ink)" }}
+          >
+            Let&rsquo;s work together
           </h2>
-          <p className="text-[hsl(240,20%,70%)] max-w-xl mx-auto mb-10">
-            Have a project in mind or just want to say hi? My inbox is always
-            open.
+          <p className="max-w-xl mb-10" style={{ color: "var(--color-ink-2)" }}>
+            Open to internships, freelance work, and collaborations. Message
+            me on LinkedIn — that&rsquo;s the fastest way to reach me.
           </p>
 
           <a
             href="https://www.linkedin.com/in/mufti-faris/"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex px-8 py-4 rounded-lg font-medium bg-[hsl(232,22%,60%)] text-[hsl(240,23%,5%)] hover:bg-[hsl(25,22%,60%)] transition-all duration-300 mb-12"
+            className="inline-flex px-7 py-3.5 text-sm font-medium transition-transform duration-200 hover:-translate-y-0.5 mb-12"
+            style={{
+              borderRadius: "var(--radius-control)",
+              background: "var(--color-primary)",
+              color: primaryInk,
+            }}
           >
-            Say Hello
+            Message me on LinkedIn
           </a>
 
-          <div className="flex items-center justify-center gap-6">
+          <div className="flex items-center gap-4">
             {socials.map(({ icon: Icon, label, href }) => (
               <a
                 key={label}
@@ -58,15 +59,10 @@ export default function Contact() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={label}
-                className="w-11 h-11 flex items-center justify-center rounded-full border text-[hsl(240,20%,70%)] transition-all duration-300 hover:text-[hsl(240,23%,5%)]"
-                style={{ borderColor: "hsla(240, 20%, 95%, 0.15)" }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.background = colors.accent;
-                  e.currentTarget.style.borderColor = colors.accent;
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.background = "transparent";
-                  e.currentTarget.style.borderColor = "hsla(240, 20%, 95%, 0.15)";
+                className="social-icon w-11 h-11 flex items-center justify-center rounded-full transition-colors duration-200"
+                style={{
+                  border: "1px solid var(--color-rule)",
+                  color: "var(--color-ink-2)",
                 }}
               >
                 <Icon size={18} />

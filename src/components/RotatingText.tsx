@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { AnimatePresence, motion, type Variants } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion, type Variants } from "framer-motion";
 
 interface RotatingTextProps {
   words: string[];
@@ -19,12 +19,19 @@ const letterVariants: Variants = {
   }),
 };
 
+const wordVariants: Variants = {
+  hidden: { opacity: 0 },
+  show: { opacity: 1, transition: { duration: 0.15, ease: "easeOut" } },
+  exit: { opacity: 0, transition: { duration: 0.1 } },
+};
+
 export default function RotatingText({
   words,
   interval = 2200,
   className = "",
 }: RotatingTextProps) {
   const [index, setIndex] = useState(0);
+  const reduceMotion = useReducedMotion();
 
   useEffect(() => {
     if (words.length <= 1) return;
@@ -35,6 +42,28 @@ export default function RotatingText({
   }, [words.length, interval]);
 
   const current = words[index];
+
+  // Per-letter reveal is a nice typing-like flourish, but it's still spatial
+  // motion — respect prefers-reduced-motion with a plain crossfade instead.
+  if (reduceMotion) {
+    return (
+      <span className={`inline-block ${className}`}>
+        <AnimatePresence mode="wait">
+          <motion.span
+            key={current}
+            className="inline-block"
+            variants={wordVariants}
+            initial="hidden"
+            animate="show"
+            exit="exit"
+          >
+            {current}
+          </motion.span>
+        </AnimatePresence>
+      </span>
+    );
+  }
+
   const letters = current.split("");
 
   return (

@@ -1,21 +1,21 @@
 import { motion, type Variants } from "framer-motion";
 import WaveBackground from "./WaveBackground";
 import RotatingText from "./RotatingText";
-import { colors, withAlpha } from "../lib/colors";
+import { heroWash, primaryInk } from "../lib/colors";
 
 const heroWords = ["Mufti Faris", "Frontend", "Backend"];
 
 const container: Variants = {
   hidden: {},
-  show: { transition: { staggerChildren: 0.12 } },
+  show: { transition: { staggerChildren: 0.1 } },
 };
 
 const item: Variants = {
-  hidden: { opacity: 0, y: 18 },
+  hidden: { opacity: 0, y: 12 },
   show: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] },
+    transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] },
   },
 };
 
@@ -23,69 +23,66 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      className="relative flex items-center overflow-hidden"
+      style={{ minHeight: "100dvh", paddingBlock: "var(--space-3xl)" }}
     >
       <WaveBackground />
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background: `linear-gradient(135deg, ${withAlpha("primary", 0.22)}, ${withAlpha(
-            "secondary",
-            0.22,
-          )}, ${withAlpha("accent", 0.22)})`,
-        }}
-      />
+      <div className="absolute inset-0 pointer-events-none" style={{ background: heroWash }} />
 
       <motion.div
         variants={container}
         initial="hidden"
         animate="show"
-        className="relative z-10 text-center px-8 max-w-3xl"
+        className="relative z-10 px-6 md:px-10 max-w-4xl mx-auto w-full"
       >
+        {/* Fixed-height box: prevents the layout from shifting up/down when
+            the rotating word changes length ("Mufti Faris" vs "Frontend") —
+            it should read as a typewriter swap, not a reflow. */}
+        <motion.div variants={item} style={{ minHeight: "2.1em", lineHeight: 1.05 }}>
+          <h1
+            className="font-display font-semibold tracking-tight"
+            style={{ fontSize: "var(--text-display)", color: "var(--color-ink)" }}
+          >
+            <RotatingText words={heroWords} />
+          </h1>
+        </motion.div>
+
         <motion.p
           variants={item}
-          className="text-sm font-medium mb-4 tracking-wide"
-          style={{ color: colors.accent }}
+          className="mt-6 max-w-xl text-base md:text-lg leading-relaxed"
+          style={{ color: "var(--color-ink-2)" }}
         >
-          Hi, I'm
-        </motion.p>
-        <motion.h1
-          variants={item}
-          className="text-5xl md:text-7xl font-bold tracking-tight mb-6 text-[hsl(240,20%,95%)]"
-        >
-          <RotatingText words={heroWords} />
-        </motion.h1>
-        <motion.p
-          variants={item}
-          className="text-lg md:text-xl text-[hsl(240,20%,70%)] mb-10 leading-relaxed"
-        >
-          Full Stack Developer — building practical, reliable applications
-          from clean backend systems to polished interfaces.
+          Full-stack developer building practical, reliable software — from
+          clean backend systems to polished interfaces. Studying informatics
+          at Universitas Sebelas Maret.
         </motion.p>
 
-        <motion.div variants={item} className="flex items-center justify-center gap-4">
+        <motion.div variants={item} className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4">
           <a
             href="#projects"
-            className="px-8 py-4 rounded-lg font-medium bg-[hsl(232,22%,60%)] text-[hsl(240,23%,5%)] hover:bg-[hsl(25,22%,60%)] transition-all duration-300"
+            className="inline-flex px-7 py-3.5 text-sm font-medium transition-transform duration-200 hover:-translate-y-0.5"
+            style={{
+              borderRadius: "var(--radius-control)",
+              background: "var(--color-primary)",
+              color: primaryInk,
+            }}
           >
-            View Projects
+            View projects
           </a>
           <a
             href="#contact"
-            className="px-8 py-4 rounded-lg font-medium border transition-all duration-300 text-[hsl(240,20%,95%)]"
-            style={{ borderColor: "hsla(240, 20%, 95%, 0.2)" }}
+            className="group inline-flex items-center gap-1.5 text-sm font-medium"
+            style={{ color: "var(--color-ink)" }}
           >
-            Get in Touch
+            Get in touch
+            <span
+              className="transition-transform duration-200 group-hover:translate-x-1"
+              aria-hidden="true"
+            >
+              →
+            </span>
           </a>
         </motion.div>
-      </motion.div>
-
-      <motion.div
-        animate={{ y: [0, 8, 0] }}
-        transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 text-xs tracking-widest uppercase text-[hsl(240,20%,70%)] z-10"
-      >
-        Scroll
       </motion.div>
     </section>
   );

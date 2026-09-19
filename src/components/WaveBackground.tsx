@@ -25,6 +25,10 @@ export default function WaveBackground() {
     let animationFrameId: number;
     let time = 0;
 
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
     const resizeCanvas = () => {
       const rect = canvas.getBoundingClientRect();
       canvas.width = rect.width;
@@ -118,6 +122,11 @@ export default function WaveBackground() {
         return 0.3 + t * 0.7;
       };
 
+      // Wireframe is tinted toward the brand accent (rgb 150,159,255 ~=
+      // oklch(74% 0.15 278)) so it reads as one system with the gradient
+      // wash layered on top, in both Hero and Contact.
+      const LINE_RGB = "150,159,255";
+
       // Vertical lines (wavy — follow wave shape)
       for (let col = 0; col < cols; col++) {
         ctx.beginPath();
@@ -128,7 +137,7 @@ export default function WaveBackground() {
         }
         const midRow = Math.floor(rows / 2);
         const opacity = depthOpacity(vertices[midRow][col].z);
-        ctx.strokeStyle = `rgba(255,255,255,${0.08 * opacity})`;
+        ctx.strokeStyle = `rgba(${LINE_RGB},${0.1 * opacity})`;
         ctx.lineWidth = 1;
         ctx.stroke();
       }
@@ -143,7 +152,7 @@ export default function WaveBackground() {
         }
         const midCol = Math.floor(cols / 2);
         const opacity = depthOpacity(vertices[row][midCol].z);
-        ctx.strokeStyle = `rgba(255,255,255,${0.08 * opacity})`;
+        ctx.strokeStyle = `rgba(${LINE_RGB},${0.1 * opacity})`;
         ctx.lineWidth = 1;
         ctx.stroke();
       }
@@ -155,7 +164,7 @@ export default function WaveBackground() {
           const a = projected[row][col];
           const d = projected[row + 1][col + 1];
           const opacity = depthOpacity(vertices[row][col].z);
-          ctx.strokeStyle = `rgba(255,255,255,${0.08 * opacity})`;
+          ctx.strokeStyle = `rgba(${LINE_RGB},${0.1 * opacity})`;
           ctx.beginPath();
           ctx.moveTo(a.x, a.y);
           ctx.lineTo(d.x, d.y);
@@ -163,7 +172,9 @@ export default function WaveBackground() {
         }
       }
 
-      animationFrameId = requestAnimationFrame(animate);
+      if (!prefersReducedMotion) {
+        animationFrameId = requestAnimationFrame(animate);
+      }
     };
     animate();
 

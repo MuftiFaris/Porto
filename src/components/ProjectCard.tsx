@@ -3,11 +3,11 @@ import {
   useMotionValue,
   useTransform,
   useSpring,
+  useReducedMotion,
 } from "framer-motion";
 import { FiGithub, FiExternalLink } from "react-icons/fi";
 import type { MouseEvent } from "react";
 import type { Project } from "../data/projects";
-import { colors } from "../lib/colors";
 
 export default function ProjectCard({
   title,
@@ -18,20 +18,22 @@ export default function ProjectCard({
   demo,
 }: Project) {
   const repoUrl = repo ? `https://github.com/${repo}` : null;
+  const reduceMotion = useReducedMotion();
 
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
-  const rotateX = useSpring(useTransform(y, [-0.5, 0.5], [6, -6]), {
+  const rotateX = useSpring(useTransform(y, [-0.5, 0.5], [4, -4]), {
     stiffness: 300,
     damping: 25,
   });
-  const rotateY = useSpring(useTransform(x, [-0.5, 0.5], [-6, 6]), {
+  const rotateY = useSpring(useTransform(x, [-0.5, 0.5], [-4, 4]), {
     stiffness: 300,
     damping: 25,
   });
 
   function handleMouseMove(e: MouseEvent<HTMLDivElement>) {
+    if (reduceMotion) return;
     const rect = e.currentTarget.getBoundingClientRect();
     x.set((e.clientX - rect.left) / rect.width - 0.5);
     y.set((e.clientY - rect.top) / rect.height - 0.5);
@@ -46,15 +48,15 @@ export default function ProjectCard({
     <motion.div
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      style={{ rotateX, rotateY, transformPerspective: 800 }}
-      whileHover={{ scale: 1.015 }}
-      className="group relative rounded-xl h-full"
+      style={reduceMotion ? undefined : { rotateX, rotateY, transformPerspective: 800 }}
+      className="group relative h-full"
     >
       <div
-        className="relative h-full rounded-xl border overflow-hidden flex flex-col transition-colors duration-300"
+        className="relative h-full overflow-hidden flex flex-col"
         style={{
-          background: "hsla(240, 20%, 95%, 0.03)",
-          borderColor: "hsla(240, 20%, 95%, 0.1)",
+          borderRadius: "var(--radius-card)",
+          border: "1px solid var(--color-rule)",
+          background: "var(--color-paper-2)",
         }}
       >
         {thumbnail ? (
@@ -64,39 +66,42 @@ export default function ProjectCard({
               alt={title}
               className="w-full h-full object-cover"
               loading="lazy"
+              width={640}
+              height={360}
             />
           </div>
         ) : (
           <div
-            className="aspect-video w-full flex items-center justify-center text-xs uppercase tracking-widest"
-            style={{
-              background: "hsla(240, 20%, 95%, 0.03)",
-              color: "hsl(240, 20%, 70%)",
-            }}
+            className="aspect-video w-full flex items-center justify-center font-mono text-xs uppercase tracking-widest"
+            style={{ background: "var(--color-paper-3)", color: "var(--color-muted)" }}
           >
-            Preview
+            Preview unavailable
           </div>
         )}
 
         <div className="p-6 flex flex-col gap-4 flex-1">
           <div>
-            <h3 className="text-lg font-semibold mb-2 tracking-tight text-[hsl(240,20%,95%)]">
+            <h3
+              className="font-semibold mb-2 tracking-tight"
+              style={{ color: "var(--color-ink)" }}
+            >
               {title}
             </h3>
-            <p className="text-sm leading-relaxed text-[hsl(240,20%,70%)]">
+            <p className="text-sm leading-relaxed" style={{ color: "var(--color-ink-2)" }}>
               {description}
             </p>
           </div>
 
           {tech.length > 0 && (
-            <ul className="flex flex-wrap gap-2 text-xs">
+            <ul className="flex flex-wrap gap-2 font-mono text-xs">
               {tech.map((item) => (
                 <li
                   key={item}
-                  className="rounded-full px-2.5 py-1"
+                  className="px-2.5 py-1"
                   style={{
-                    background: "hsla(232, 22%, 60%, 0.12)",
-                    color: colors.primary,
+                    borderRadius: "999px",
+                    border: "1px solid var(--color-rule)",
+                    color: "var(--color-ink-2)",
                   }}
                 >
                   {item}
@@ -105,13 +110,13 @@ export default function ProjectCard({
             </ul>
           )}
 
-          <div className="flex gap-5 text-sm mt-auto pt-2 text-[hsl(240,20%,70%)]">
+          <div className="flex gap-5 text-sm mt-auto pt-2" style={{ color: "var(--color-ink-2)" }}>
             {repoUrl && (
               <a
                 href={repoUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 hover:text-[hsl(240,20%,95%)] transition-colors duration-300"
+                className="inline-flex items-center gap-1.5 transition-colors duration-200 hover:text-(--color-ink)"
               >
                 <FiGithub size={15} />
                 Code
@@ -122,7 +127,7 @@ export default function ProjectCard({
                 href={demo}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 hover:text-[hsl(240,20%,95%)] transition-colors duration-300"
+                className="inline-flex items-center gap-1.5 transition-colors duration-200 hover:text-(--color-ink)"
               >
                 <FiExternalLink size={15} />
                 Live

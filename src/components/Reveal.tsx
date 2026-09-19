@@ -1,28 +1,31 @@
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import type { ReactNode } from "react";
 
 interface RevealProps {
   children: ReactNode;
   className?: string;
   delay?: number;
-  y?: number;
 }
 
-export default function Reveal({
-  children,
-  className = "",
-  delay = 0,
-  y = 24,
-}: RevealProps) {
+// One orchestrated entrance per element, the first time it enters the
+// viewport — never re-triggers on repeat scroll (that reads as "the page
+// never settles", per Hallmark's motion discipline).
+export default function Reveal({ children, className = "", delay = 0 }: RevealProps) {
+  const reduceMotion = useReducedMotion();
+
+  if (reduceMotion) {
+    return <div className={className}>{children}</div>;
+  }
+
   return (
     <motion.div
-      initial={{ opacity: 0, y, scale: 0.97 }}
-      whileInView={{ opacity: 1, y: 0, scale: 1 }}
-      viewport={{ once: false, amount: 0.2, margin: "-60px" }}
+      initial={{ opacity: 0, y: 10 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.2, margin: "-60px" }}
       transition={{
-        duration: 0.6,
+        duration: 0.42,
         delay: delay / 1000,
-        ease: [0.25, 0.1, 0.25, 1],
+        ease: [0.16, 1, 0.3, 1],
       }}
       className={className}
     >

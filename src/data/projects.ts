@@ -45,6 +45,15 @@ const projects: Project[] = [
     demo: "",
     thumbnail: ""
   },
+  {
+    title: "Beleef NLP",
+    description:
+      "An interactive NLP (Neuro-Linguistic Programming) training platform built for Het NLP Instituut. Replaces quiz-based learning with branching crisis-simulation chat scenarios that surface a manager's own language patterns — deletions, distortions, generalizations — through a diagnostic engine, authored via a headless CMS.",
+    tech: ["Next.js", "TypeScript", "Sanity CMS"],
+    repo: "GibranMaulana/NLP-Project",
+    demo: "https://nlp-izin-wmc.vercel.app",
+    thumbnail: ""
+  },
 ];
 
 export default projects;

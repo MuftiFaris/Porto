@@ -43,7 +43,7 @@ const projects: Project[] = [
     tech: ["C++"],
     repo: "MuftiFaris/ArborOS",
     demo: "",
-    thumbnail: ""
+    thumbnail: "/os/png"
   },
   {
     title: "Beleef NLP",

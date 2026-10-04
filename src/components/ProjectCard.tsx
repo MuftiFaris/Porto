@@ -64,7 +64,7 @@ export default function ProjectCard({
             <img
               src={thumbnail}
               alt={title}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
               loading="lazy"
               width={640}
               height={360}
@@ -79,15 +79,18 @@ export default function ProjectCard({
           </div>
         )}
 
-        <div className="p-6 flex flex-col gap-4 flex-1">
+        <div className="p-5 flex flex-col gap-3.5 flex-1">
           <div>
             <h3
-              className="font-semibold mb-2 tracking-tight"
+              className="font-semibold mb-1.5 tracking-tight"
               style={{ color: "var(--color-ink)" }}
             >
               {title}
             </h3>
-            <p className="text-sm leading-relaxed" style={{ color: "var(--color-ink-2)" }}>
+            <p
+              className="text-sm leading-relaxed line-clamp-3"
+              style={{ color: "var(--color-ink-2)" }}
+            >
               {description}
             </p>
           </div>

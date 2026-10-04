@@ -65,7 +65,7 @@ export default function Hero() {
               className="mt-5 max-w-md text-base md:text-lg leading-relaxed"
               style={{ color: "var(--color-ink-2)" }}
             >
-              Full-stack developer building practical, reliable software —
+              Full-stack developer building practical, reliable software
               from clean backend systems to polished interfaces.
             </p>
 

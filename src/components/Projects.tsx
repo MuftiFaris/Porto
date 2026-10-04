@@ -9,7 +9,7 @@ export default function Projects() {
       className="relative scroll-mt-20"
       style={{ borderTop: "1px solid var(--color-rule-2)" }}
     >
-      <div className="max-w-4xl mx-auto px-6 md:px-10 py-24 md:py-28">
+      <div className="max-w-6xl mx-auto px-6 md:px-10 py-24 md:py-28">
         <Reveal>
           <span
             className="text-xs font-semibold uppercase tracking-[0.14em]"
@@ -28,7 +28,7 @@ export default function Projects() {
           </p>
         </Reveal>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {projects.map((project, i) => (
             <Reveal key={project.title} delay={i * 60}>
               <ProjectCard {...project} />

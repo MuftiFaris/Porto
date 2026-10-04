@@ -67,7 +67,7 @@ export default function Footer() {
           className="font-mono text-xs leading-relaxed mt-16 pt-6"
           style={{ color: "var(--color-muted)", borderTop: "1px solid var(--color-rule-2)" }}
         >
-          MUFTI FARIS — FULL-STACK DEVELOPER · BUILT WITH REACT, VITE &amp;
+          MUFTI FARIS · BUILT WITH REACT, VITE &amp;
           FRAMER MOTION · © {new Date().getFullYear()}
         </p>
       </div>

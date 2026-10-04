@@ -21,7 +21,7 @@ const projects: Project[] = [
   {
     title: "SARS",
     description:
-      "This system enables students to formally request schedule or room changes through a multi-layered validation workflow—Student → Teaching Assistant → Administrator—complemented by a role-based AI assistant to support decision-making.",
+      "This system enables students to formally request schedule or room changes through a multi-layered validation workflow—Student → Teaching Assistant → Administrator complemented by a role-based AI assistant to support decision-making.",
     tech: ["PHP", "JavaScript", "Tailwind CSS", "Next.js"],
     repo: "fritzuu/Praktikum-RPL-Kelas-B-Kelompok-6",
     demo: "",
@@ -39,8 +39,8 @@ const projects: Project[] = [
   {
     title: "ArborOS [Still On Private] ",
     description:
-      "A privacy-focused, user-controlled Linux distribution built on Fedora. Features immutable system architecture, transparent telemetry, and modern desktop experience optimized for performance and security.",
-    tech: ["Go"],
+      "A privacy-focused, user-controlled Linux distribution built on Arch Linux. Features immutable system architecture, transparent telemetry, and modern desktop experience optimized for performance and security.",
+    tech: ["C++"],
     repo: "MuftiFaris/ArborOS",
     demo: "",
     thumbnail: ""
@@ -48,20 +48,20 @@ const projects: Project[] = [
   {
     title: "Beleef NLP",
     description:
-      "An interactive NLP (Neuro-Linguistic Programming) training platform built for Het NLP Instituut. Replaces quiz-based learning with branching crisis-simulation chat scenarios that surface a manager's own language patterns — deletions, distortions, generalizations — through a diagnostic engine, authored via a headless CMS.",
+      "An interactive NLP (Neuro-Linguistic Programming) training platform built for Het NLP Instituut. Replaces quiz-based learning with branching crisis-simulation chat scenarios that surface a manager's own language patterns deletions, distortions, generalizations through a diagnostic engine, authored via a headless CMS.",
     tech: ["Next.js", "TypeScript", "Sanity CMS"],
     repo: "GibranMaulana/NLP-Project",
     demo: "https://nlp-izin-wmc.vercel.app",
-    thumbnail: ""
+    thumbnail: "/nlp.png"
   },
   {
     title: "SIBA [Still On Private] ",
     description:
-      "SIBA (Sistem Informasi Bursa dan Aset / Watchtower) — a starter kit and collaborative development guide for building an IDX stock-monitoring assistant, built for Track 02: Automation & Workflows at Sectors Hackathon 2026.",
+      "SIBA (Sistem Informasi Bursa dan Aset / Watchtower) a starter kit and collaborative development guide for building an IDX stock-monitoring assistant, built for Track 02: Automation & Workflows at Sectors Hackathon 2026.",
     tech: ["TypeScript", "PLpgSQL"],
     repo: "fritzuu/Sector-hackathon-automation",
     demo: "",
-    thumbnail: ""
+    thumbnail: "/siba.png"
   },
 ];
 

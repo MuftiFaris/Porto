@@ -18,7 +18,7 @@ export default function Profile() {
         </span>
         <p className="mt-3 text-sm md:text-base leading-relaxed" style={{ color: "var(--color-ink-2)" }}>
           Undergraduate informatics student with a passion for building
-          practical, user-friendly applications — currently focused on web
+          practical, user-friendly applications currently focused on web
           development with React and Node.js.
         </p>
       </Reveal>

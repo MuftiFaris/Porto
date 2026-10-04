@@ -54,6 +54,15 @@ const projects: Project[] = [
     demo: "https://nlp-izin-wmc.vercel.app",
     thumbnail: ""
   },
+  {
+    title: "SIBA [Still On Private] ",
+    description:
+      "SIBA (Sistem Informasi Bursa dan Aset / Watchtower) — a starter kit and collaborative development guide for building an IDX stock-monitoring assistant, built for Track 02: Automation & Workflows at Sectors Hackathon 2026.",
+    tech: ["TypeScript", "PLpgSQL"],
+    repo: "fritzuu/Sector-hackathon-automation",
+    demo: "",
+    thumbnail: ""
+  },
 ];
 
 export default projects;

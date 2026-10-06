@@ -4,9 +4,9 @@ import { getProjectPresentation } from "../lib/projectPresentation";
 
 type Props = Project & { onOpen: () => void; active: boolean; hidden: boolean };
 
-export default function ProjectCard({ title, description, tech, thumbnail, onOpen, active, hidden }: Props) {
+export default function ProjectCard({ title, tech, thumbnail, onOpen, active, hidden }: Props) {
   const reduceMotion = useReducedMotion();
-  const { name, statuses } = getProjectPresentation(title);
+  const { name } = getProjectPresentation(title);
   return (
     <motion.button
       type="button"
@@ -21,10 +21,10 @@ export default function ProjectCard({ title, description, tech, thumbnail, onOpe
       <div className="gallery-card-image">
         {thumbnail ? <img src={thumbnail} alt={`${name} preview`} draggable={false} loading="lazy" /> : <span>Preview unavailable</span>}
       </div>
-      <span className="gallery-card-label">{statuses.length ? statuses.join(" · ") : tech[0] || "Project"}</span>
+      <span className="gallery-card-label">{tech[0] || "Project"}</span>
       <div className="gallery-card-caption">
         <h3>{name}</h3>
-        <motion.p className="gallery-card-summary" animate={{ opacity: active ? 1 : 0 }} transition={{ duration: reduceMotion ? 0 : 0.3, delay: active && !reduceMotion ? 0.12 : 0 }}>{description}</motion.p>
+        <motion.p animate={{ opacity: active ? 1 : 0 }} transition={{ duration: reduceMotion ? 0 : 0.3, delay: active && !reduceMotion ? 0.12 : 0 }}>{tech.join(" / ")}</motion.p>
         <span className="gallery-card-hint">{active ? "View project ↗" : "Explore →"}</span>
       </div>
     </motion.button>

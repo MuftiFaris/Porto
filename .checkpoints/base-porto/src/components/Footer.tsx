@@ -1,6 +1,11 @@
-import { FiGithub } from "react-icons/fi";
+import { FiGithub, FiLinkedin } from "react-icons/fi";
 import Reveal from "./Reveal";
 import { primaryInk } from "../lib/colors";
+
+const socials = [
+  { icon: FiGithub, label: "GitHub", href: "https://github.com/MuftiFaris" },
+  { icon: FiLinkedin, label: "LinkedIn", href: "https://www.linkedin.com/in/mufti-faris/" },
+];
 
 export default function Footer() {
   return (
@@ -10,17 +15,19 @@ export default function Footer() {
       >
         <Reveal direction="none" className="contact-layout">
           <div className="contact-copy">
-          <span className="section-eyebrow">Contact</span>
           <h2
             id="contact-title"
-            className="font-display"
+            className="font-display font-semibold max-w-[16ch]"
             style={{
+              fontSize: "var(--text-h2)",
+              lineHeight: 1.15,
+              letterSpacing: "-0.02em",
               color: "var(--color-ink)",
             }}
           >
             Have a project in mind?
           </h2>
-          <p className="contact-description mt-4" style={{ color: "var(--color-ink-2)" }}>
+          <p className="mt-4 max-w-md text-sm leading-relaxed" style={{ color: "var(--color-ink-2)" }}>
             Open to internships, freelance work, and collaborations.
             Tell me what you&rsquo;re working on.
           </p>
@@ -31,7 +38,7 @@ export default function Footer() {
               href="https://www.linkedin.com/in/mufti-faris/"
               target="_blank"
               rel="noopener noreferrer"
-              className="contact-cta inline-flex px-7 py-3.5 transition-transform duration-200 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98]"
+              className="inline-flex px-7 py-3.5 text-sm font-medium transition-transform duration-200 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98]"
               style={{
                 borderRadius: "var(--radius-control)",
                 background: "var(--color-primary)",
@@ -41,14 +48,21 @@ export default function Footer() {
               Let&rsquo;s talk on LinkedIn
             </a>
 
+            <div className="flex items-center gap-3">
+              {socials.map(({ icon: Icon, label, href }) => (
                 <a
-                  href="https://github.com/MuftiFaris"
+                  key={label}
+                  href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="contact-github"
+                  aria-label={label}
+                  className="social-icon w-11 h-11 flex items-center justify-center rounded-full transition-colors duration-200"
+                  style={{ border: "1px solid var(--color-rule)", color: "var(--color-ink-2)" }}
                 >
-                  <FiGithub size={18} aria-hidden="true" /> GitHub ↗
+                  <Icon size={18} />
                 </a>
+              ))}
+            </div>
           </div>
         </Reveal>
 

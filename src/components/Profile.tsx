@@ -1,118 +1,47 @@
-import { FiGithub, FiLinkedin } from "react-icons/fi";
 import skills from "../data/skills";
-import { colors, type AccentKey } from "../lib/colors";
 import Reveal from "./Reveal";
+import type { IconType } from "react-icons";
+import { FiMonitor } from "react-icons/fi";
+import { TbBrandCSharp } from "react-icons/tb";
+import { SiJavascript, SiTypescript, SiPython, SiPhp, SiCplusplus, SiReact, SiNextdotjs, SiTailwindcss, SiVite, SiNodedotjs, SiFastapi, SiPostgresql, SiSanity, SiArchlinux, SiGooglegemini, SiGit, SiDocker, SiVercel } from "react-icons/si";
 
-// Supporting bento tiles rendered as siblings of Hero's lead tile, inside
-// the same `.bento` grid — this file owns the content, Hero.tsx owns the
-// grid + wireframe backdrop.
+const stackIcons: Record<string, IconType> = {
+  JavaScript: SiJavascript, TypeScript: SiTypescript, Python: SiPython,
+  PHP: SiPhp, "C#": TbBrandCSharp, "C++": SiCplusplus,
+  React: SiReact, "Next.js": SiNextdotjs, "Tailwind CSS": SiTailwindcss, Vite: SiVite,
+  "Node.js": SiNodedotjs, FastAPI: SiFastapi, PostgreSQL: SiPostgresql,
+  "PL/pgSQL": SiPostgresql, "Sanity CMS": SiSanity, WPF: FiMonitor,
+  "Arch Linux": SiArchlinux, "Gemini API": SiGooglegemini,
+  Git: SiGit, Docker: SiDocker, Vercel: SiVercel,
+};
+
 export default function Profile() {
   return (
-    <>
-      <Reveal delay={60} className="bento-tile" style={{ gridArea: "bio" }}>
-        <span
-          className="text-xs font-semibold uppercase tracking-[0.14em]"
-          style={{ color: "var(--color-primary)" }}
-        >
-          About
-        </span>
-        <p className="mt-3 text-sm md:text-base leading-relaxed" style={{ color: "var(--color-ink-2)" }}>
-          Undergraduate informatics student with a passion for building
-          practical, user-friendly applications currently focused on web
-          development with React and Node.js.
-        </p>
-      </Reveal>
-
-      <Reveal delay={100} className="bento-tile" style={{ gridArea: "skills" }}>
-        <span
-          className="text-xs font-semibold uppercase tracking-[0.14em]"
-          style={{ color: "var(--color-primary)" }}
-        >
-          Stack
-        </span>
-        <ul className="mt-4 flex flex-col gap-3.5">
-          {skills.map((group) => {
-            const accentKey = group.accent as AccentKey;
-            return (
-              <li key={group.category}>
-                <p
-                  className="text-xs font-semibold uppercase tracking-widest mb-1 flex items-center gap-2"
-                  style={{ color: "var(--color-ink)" }}
-                >
-                  <span
-                    className="w-1.5 h-1.5 rounded-full shrink-0"
-                    style={{ background: colors[accentKey] }}
-                  />
-                  {group.category}
-                </p>
-                <p className="text-sm" style={{ color: "var(--color-ink-2)" }}>
-                  {group.items.join(", ")}
-                </p>
-              </li>
-            );
-          })}
-        </ul>
-      </Reveal>
-
-      <Reveal delay={140} className="bento-tile" style={{ gridArea: "status" }}>
-        <span
-          className="text-xs font-semibold uppercase tracking-[0.14em]"
-          style={{ color: "var(--color-primary)" }}
-        >
-          Status
-        </span>
-        <p className="mt-3 text-sm leading-relaxed flex items-start gap-2" style={{ color: "var(--color-ink-2)" }}>
-          <span
-            className="mt-1.5 w-2 h-2 rounded-full shrink-0"
-            style={{ background: colors.primary }}
-            aria-hidden="true"
-          />
-          Open to internships, freelance work, and collaborations.
-        </p>
-      </Reveal>
-
-      <Reveal delay={180} className="bento-tile" style={{ gridArea: "education" }}>
-        <span
-          className="text-xs font-semibold uppercase tracking-[0.14em]"
-          style={{ color: "var(--color-primary)" }}
-        >
-          Education
-        </span>
-        <p className="mt-3 text-sm leading-relaxed" style={{ color: "var(--color-ink-2)" }}>
-          Informatics, Universitas Sebelas Maret
-        </p>
-      </Reveal>
-
-      <Reveal delay={220} className="bento-tile flex flex-col" style={{ gridArea: "contact" }}>
-        <span
-          className="text-xs font-semibold uppercase tracking-[0.14em]"
-          style={{ color: "var(--color-primary)" }}
-        >
-          Say hello
-        </span>
-        <div className="mt-3 flex items-center gap-3">
-          <a
-            href="https://github.com/MuftiFaris"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="GitHub"
-            className="social-icon w-10 h-10 flex items-center justify-center rounded-full transition-colors duration-200"
-            style={{ border: "1px solid var(--color-rule)", color: "var(--color-ink-2)" }}
-          >
-            <FiGithub size={16} />
-          </a>
-          <a
-            href="https://www.linkedin.com/in/mufti-faris/"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="LinkedIn"
-            className="social-icon w-10 h-10 flex items-center justify-center rounded-full transition-colors duration-200"
-            style={{ border: "1px solid var(--color-rule)", color: "var(--color-ink-2)" }}
-          >
-            <FiLinkedin size={16} />
-          </a>
-        </div>
-      </Reveal>
-    </>
+    <section id="about" className="portfolio-about" aria-labelledby="about-title">
+      <div className="portfolio-shell">
+        <Reveal direction="none">
+          <span className="section-eyebrow">Background</span>
+          <h2 id="about-title">A little about me</h2>
+        </Reveal>
+          <div className="about-layout">
+            <Reveal direction="left" className="about-story">
+              <p>I’m an informatics undergraduate at Universitas Sebelas Maret.</p>
+              <p>I like building practical, user-friendly applications, with a current focus on React and Node.js.</p>
+            </Reveal>
+            <Reveal direction="right" delay={100} className="about-stack">
+              <h3>What I work with</h3>
+              <dl>{skills.map((group, index) => (
+                <Reveal key={group.category} direction="none" delay={index * 70}>
+                  <dt>{group.category}</dt>
+                  <dd><ul className="stack-items">{group.items.map((item) => {
+                    const Icon = stackIcons[item];
+                    return <li key={item}>{Icon && <Icon aria-hidden="true" />}<span>{item}</span></li>;
+                  })}</ul></dd>
+                </Reveal>
+              ))}</dl>
+            </Reveal>
+          </div>
+      </div>
+    </section>
   );
 }

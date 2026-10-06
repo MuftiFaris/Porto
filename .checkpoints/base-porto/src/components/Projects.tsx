@@ -29,19 +29,17 @@ export default function Projects() {
 
   const selectProject = (index: number) => setSelection((current) => ({ active: index, previous: current.active }));
   const changeSlide = (direction: number) => setSelection((current) => ({ active: (current.active + direction + projects.length) % projects.length, previous: current.active }));
-  const activeWidth = Math.min(840, stageWidth * (stageWidth < 600 ? 0.76 : 0.5));
-  const sideWidth = Math.min(320, stageWidth * (stageWidth < 600 ? 0.25 : 0.16));
+  const activeWidth = Math.min(840, stageWidth * (stageWidth < 600 ? 0.76 : 0.52));
+  const sideWidth = Math.min(320, stageWidth * (stageWidth < 600 ? 0.25 : 0.22));
   const cardGap = stageWidth < 600 ? 12 : 24;
 
   return (
-    <section id="projects" className="relative scroll-mt-20" aria-labelledby="projects-title">
+    <section id="projects" className="relative scroll-mt-20">
       <div className="projects-content portfolio-shell">
-        <Reveal className="work-heading" direction="none">
-          <div>
-            <span className="section-eyebrow">Work</span>
-            <h2 id="projects-title">Selected projects</h2>
-          </div>
-          <p>{projects.length} projects <span aria-hidden="true">/</span> 2024–2026</p>
+        <Reveal>
+          <span className="text-xs font-semibold uppercase tracking-[0.14em]" style={{ color: "var(--color-primary)" }}>Selected work</span>
+          <h2 className="font-display font-semibold mt-3 mb-3" style={{ fontSize: "var(--text-h2)", color: "var(--color-ink)" }}>Things I&rsquo;ve shipped</h2>
+          <p className="text-sm mb-8" style={{ color: "var(--color-muted)" }}>{projects.length} projects · 2024–2026</p>
         </Reveal>
         <Reveal>
           <div className="project-gallery" role="region" aria-label="Project gallery" aria-roledescription="carousel">
@@ -89,13 +87,7 @@ export default function Projects() {
                     className="project-gallery-item"
                     style={{ zIndex: projects.length - distance, pointerEvents: hidden ? "none" : "auto" }}
                     initial={false}
-                    animate={{
-                      width,
-                      x: center - width / 2,
-                      opacity: distance > 2 ? 0 : distance === 2 ? 0.6 : 1,
-                      scale: distance >= 2 ? 0.94 : 1,
-                      filter: distance >= 2 ? "blur(2px)" : "blur(0px)",
-                    }}
+                    animate={{ width, x: center - width / 2, opacity: distance > 2 ? 0 : 1 }}
                     transition={{
                       duration: reduceMotion ? 0 : 0.7,
                       ease: [0.22, 1, 0.36, 1],

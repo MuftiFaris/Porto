@@ -33,7 +33,7 @@ const projects: Project[] = [
       "Cogniva is a premium, AI-powered student productivity companion and academic performance analytics dashboard. It combines modern task management, rich-text note taking, and focus enhancement techniques with Machine Learning and Generative AI to optimize students' habits and predict academic outcomes.",
     tech: ["TypeScript", "Python", "JavaScript", "Next.js", "Tailwind CSS"],
     repo: "fritzuu/Note-Manager-AI",
-    demo: "",
+    demo: "https://withcogniva.vercel.app/",
     thumbnail: "/cogniva.png"
   },
   {
@@ -60,7 +60,7 @@ const projects: Project[] = [
       "SIBA (Sistem Informasi Bursa dan Aset / Watchtower) a starter kit and collaborative development guide for building an IDX stock-monitoring assistant, built for Track 02: Automation & Workflows at Sectors Hackathon 2026.",
     tech: ["TypeScript", "PLpgSQL"],
     repo: "fritzuu/Sector-hackathon-automation",
-    demo: "",
+    demo: "https://siba-pi.vercel.app/",
     thumbnail: "/siba.png"
   },
 ];
